@@ -1,23 +1,48 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.Given;
-import org.openqa.selenium.interactions.Actions;
-import pages.HomePage_Xpaths;
+import locators.Locators_HomePage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
 import utilities.Driver;
+import utilities.ReusableMethods;
+
+import java.time.Duration;
+
+import static utilities.Driver.driver;
 
 public class GeneralSteps {
 
-    @Given("The user visits {string}")
-    public void the_user_visits(String string) {
+    Locators_HomePage homePage = new Locators_HomePage();
+
+    public GeneralSteps() {}
+    @Given("User visits {string}")
+    public void user_visits(String string) {
         Driver.getDriver().get(ConfigReader.getProperty(string));
-        Actions actions = new Actions(Driver.driver);
-        HomePage_Xpaths.wait(3);
+        ReusableMethods.wait(5);
     }
-    @Given("Verify that the Insider homepage is opened")
-    public void verify_that_the_insider_homepage_is_opened() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @Given("If a popup appears, close it")
+    public void close_popup() {
+        //duyuru popup'ının görünme süresi belirsiz olduğu için gözükürse kapat yaptım.
+        try {
+            WebElement element = driver.findElement((By) homePage.announcePopup);
+            if (element != null && element.isDisplayed()) {
+                homePage.announcePopupClose.click();
+                System.out.println("Announce Popup closed.");
+            }
+        } catch (Exception e) {
+            System.out.println("Announce Popup not found.");
+        }
     }
+
+    @Given("User closes the browser")
+    public void user_closes_the_browser() {
+        Driver.quitDriver();
+    }
+
 
 }

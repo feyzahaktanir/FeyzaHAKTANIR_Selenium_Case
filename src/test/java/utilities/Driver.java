@@ -22,7 +22,8 @@ public class Driver {
         if (driver == null) {
             switch (ConfigReader.getProperty("browser")){
                 case "chrome":
-                    WebDriverManager.chromedriver().setup();
+                    WebDriverManager.chromedriver().driverVersion(ConfigReader.getProperty("chromedriver")).setup(); //Burada normalde sürümü kendi buluyordu ancak bulamadığı için manuel tetiklenmesi gerekti
+                    System.out.println("Using ChromeDriver version: " + WebDriverManager.chromedriver().getDownloadedDriverVersion());
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--remote-allow-origins=*");
                     options.addArguments("--disable-notifications");
@@ -41,11 +42,11 @@ public class Driver {
                     driver = new SafariDriver();
                     break;
             }
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
             return driver;
         }
 
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         return driver;
     }
 
