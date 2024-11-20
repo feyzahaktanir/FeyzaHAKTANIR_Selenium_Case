@@ -39,8 +39,8 @@ public class GeneralSteps {
         }
     }
 
-    @Given("User closes the browser")
-    public void user_closes_the_browser() {
+    @Given("Close the browser")
+    public void close_the_browser() {
         Driver.quitDriver();
     }
 
