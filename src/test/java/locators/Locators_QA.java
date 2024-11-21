@@ -1,5 +1,6 @@
 package locators;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -8,7 +9,7 @@ import utilities.Driver;
 import java.util.List;
 
 public class Locators_QA {
-    public Locators_QA(){
+    public Locators_QA(WebDriver driver){
         PageFactory.initElements(Driver.getDriver(), this);
 
     }
@@ -25,6 +26,8 @@ public class Locators_QA {
     public WebElement qaSelect;
     @FindBy(xpath = "//div[@class='position-list-item']")
     public static List<WebElement> jobList;
+    @FindBy(xpath = "//div[@id='jobs-list']//div[contains(@class, 'position-list')]//span")
+    public static List<WebElement> jobAllList;
     @FindBy(xpath = ".//p[@class='position-title font-weight-bold']")
     public static WebElement jobPosition;
     @FindBy(xpath = ".//span[@class='position-department text-large font-weight-600 text-primary']")

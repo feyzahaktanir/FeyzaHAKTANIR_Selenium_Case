@@ -1,15 +1,16 @@
 package locators;
 
-import org.junit.Assert;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utilities.Driver;
 
+import static utilities.Driver.driver;
+
 public class Locators_HomePage {
 
-    public Locators_HomePage(){
+    public Locators_HomePage(WebDriver driver){
         PageFactory.initElements(Driver.getDriver(), this);
 
     }
