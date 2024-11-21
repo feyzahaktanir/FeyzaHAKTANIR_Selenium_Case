@@ -4,8 +4,6 @@ import io.cucumber.java.en.Given;
 import locators.Locators_HomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.ConfigReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
@@ -21,8 +19,9 @@ public class GeneralSteps {
     public GeneralSteps() {}
     @Given("User visits {string}")
     public void user_visits(String string) {
-        Driver.getDriver().get(ConfigReader.getProperty(string));
+        Driver.getDriver().get(string);
         ReusableMethods.wait(5);
+        homePage.cookiesAcceptAll.click();
     }
 
     @Given("If a popup appears, close it")
@@ -41,6 +40,7 @@ public class GeneralSteps {
 
     @Given("Close the browser")
     public void close_the_browser() {
+        ReusableMethods.wait(7);
         Driver.quitDriver();
     }
 

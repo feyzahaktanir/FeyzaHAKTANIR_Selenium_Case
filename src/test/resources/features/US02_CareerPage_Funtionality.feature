@@ -1,8 +1,7 @@
 Feature: Insider Careers Page Tests
 
-  @test
   Scenario: Verify that the Careers page and its sections are displayed
-    Given User visits "homepage"
+    Given User visits "https://useinsider.com"
     * If a popup appears, close it
     * Verify that the Insider homepage is opened
     * Select the "Company" menu in the navigation bar and clicks "Careers"

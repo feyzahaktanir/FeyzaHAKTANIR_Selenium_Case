@@ -24,5 +24,8 @@ public class Locators_HomePage {
     public WebElement announcePopup;
     @FindBy(className = "ins-close-button")
     public WebElement announcePopupClose;
+    @FindBy(id = "wt-cli-accept-all-btn")
+    public WebElement cookiesAcceptAll;
+
 
 }

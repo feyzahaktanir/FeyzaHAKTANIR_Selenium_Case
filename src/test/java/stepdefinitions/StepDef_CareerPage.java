@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import locators.Locators_CareerPage;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -36,6 +37,8 @@ public class StepDef_CareerPage {
         String xpath = "//*[contains(text(), '" + searchTerm + "')]";
         try {
             WebElement element = driver.findElement(By.xpath(xpath));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(true);", element);
             System.out.println(searchTerm + " found on page: " + element.getText());
         } catch (NoSuchElementException e) {
             System.out.println(searchTerm + " did not found on page");
